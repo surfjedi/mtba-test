@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import * as dayjs from 'dayjs';
 import { StopsService } from './stops.service';
 
 @Component({
@@ -13,6 +12,7 @@ export class AppComponent {
   selectedStop: any = {}
   nextArrival: any[] =[]
   stopName: any = ''
+  diff:any
   constructor(public stopsService: StopsService){}
   // retailsale-302028
   ngOnInit(){
@@ -39,5 +39,8 @@ export class AppComponent {
       }
     });
     this.nextArrival = thing
+    let at = new Date(thing[0])
+    let now = new Date()
+    this.diff = ((at.valueOf() - now.valueOf()) / 60000).toFixed(2)
   }
 }
