@@ -2,8 +2,9 @@
   <pre>
     <!-- {{selectedStop['data']| json}} -->
   </pre>
-  <h1>Next Arrival time at {{stopName}}: {{nextArrival[0] || 'No upcoming arrivals'}}</h1> 
-    <h1 *ngIf="nextArrival[0]">{{diff}} minutes</h1>
+  <h1 >Next Arrival time at {{stopName}}: {{nextArrival[0] || 'No upcoming arrivals'}}</h1> 
+  <h1 [ngClass]="{'soon': diff < 10}" *ngIf="nextArrival[0] && diff < 10">{{diff}} minutes</h1>
+  <h2 [ngClass]="{'soon': diff < 10}"  *ngIf="nextArrival[0] && diff < 10">Arriving Soon</h2>
 <!-- <ul>
   <li *ngFor="let arrival of selectedStop"> {{arrival['attributes']['arrival_time'] | json}}</li>
 </ul> -->
